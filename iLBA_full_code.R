@@ -1,3 +1,5 @@
+library(dplyr)
+
 SCA <- function(freq, B = 3) {
   if (!is.vector(freq)) freq <- as.vector(freq)
   if (!sum(freq < B)) return(freq)
