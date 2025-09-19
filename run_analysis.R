@@ -13,10 +13,18 @@ invisible(lapply(fun_files, source))
 
 
 # Load data
-load("census_full.rda")
+load("data/census_full.rda")
+
+# Split hierarchical key and key variable columns
 hkey = colnames(census_full)[1:3]
 key = colnames(census_full)[4:8]
 
-# Make fulltable
-savefulltb(census_full, hkey = hkey, key = key, B = 5)
-saveaggtb(hkey.level = 2, key = key[1:4])
+
+# Make full table (rds format)
+savefulltb(census_full, hkey = hkey, key = key, B = 5, 
+           output.path = "artifacts/fulltable.rds")
+
+
+# Save aggregated table (csv format)
+saveaggtb(hkey.level = 2, key = key[1:4], input.path = "artifacts/fulltable.rds", 
+          output.table.path = "results/aggtable.csv", output.infoloss.path = "results/infoloss.csv")
