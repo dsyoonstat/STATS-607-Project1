@@ -13,7 +13,7 @@ Move into the project root directory, and run:
 
 ```bash
 Rscript run_analysis.R
-
+```
 
 ### 2. From RStudio
 
