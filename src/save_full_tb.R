@@ -19,14 +19,18 @@
 #' @return
 #' Saves a list object to an RDS file to the specified path.
 #' The saved object contains the followings:
-#' \item{fulltb}{A \code{data.table} with original counts (\code{N}) and masked counts (\code{N_SCA}).}
+#' \item{fulltb}{A \code{data.table} with original counts (\code{N})
+#' and masked counts (\code{N_SCA}).}
 #' \item{mask_threshold}{The masking threshold used for SCA.}
 #' \item{hkey}{Ordered hierarchical key variable names.}
-#' \item{hkey_values}{A named list of sorted unique values for each hierarchical key variable.}
+#' \item{hkey_values}{A named list of sorted unique values
+#' for each hierarchical key variable.}
 #' \item{key}{Final set of key variable names used in the frequency table}
 #' \item{key_values}{A named list of sorted unique values for each key variable.}
 #'
-save_full_tb <- function(data, hkey, key = NULL, mask_threshold = 3, rank = NULL, key_unique_threshold = 100, output_path = "full_table.rds"){
+save_full_tb <- function(data, hkey, key = NULL, mask_threshold = 3,
+                         rank = NULL, key_unique_threshold = 100,
+                         output_path = "full_table.rds"){
   
   dt <- as.data.table(data)
   
@@ -42,7 +46,8 @@ save_full_tb <- function(data, hkey, key = NULL, mask_threshold = 3, rank = NULL
   # Check that all hkey variables exist in data
   invalid_hkeys <- setdiff(hkey, names(dt))
   if (length(invalid_hkeys) > 0) {
-    stop("The following hkey variables do not exist in data: ", paste(invalid_hkeys, collapse = ", "))
+    stop("The following hkey variables do not exist in data: ",
+         paste(invalid_hkeys, collapse = ", "))
   }
   
   
@@ -53,7 +58,8 @@ save_full_tb <- function(data, hkey, key = NULL, mask_threshold = 3, rank = NULL
     # Check that all key variables exist in data
     invalid_keys <- setdiff(key, names(dt))
     if (length(invalid_keys) > 0) {
-      stop("The following key variables do not exist in data: ", paste(invalid_keys, collapse = ", "))
+      stop("The following key variables do not exist in data: ",
+           paste(invalid_keys, collapse = ", "))
     }
   }
   
