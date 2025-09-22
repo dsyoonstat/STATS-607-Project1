@@ -57,8 +57,7 @@ graph TD
 ---
 ## Example Workflow
 
-Suppose we have the following **microdata** with two hierarchical keys (`hkey1`, `hkey2`)  
-and one categorical variable (`key`):
+Suppose we have the following **microdata** with two hierarchical keys (`hkey1`, `hkey2`) and one categorical variable (`key`):
 
 ### Microdata
 | ID  | hkey1 | hkey2 | key |
@@ -73,8 +72,8 @@ and one categorical variable (`key`):
 
 ### Step 1. `save_full_tb()`: Full Frequency Table with SCA Masking
 
-The function builds a **full frequency table** at the most detailed level.  
-Small cell counts (below `mask_threshold = 3`) are masked using *Small Cell Adjustment (SCA)*.
+The function builds a full frequency table at the most detailed level. Small cell counts (below `mask_threshold = 3`) are masked using *Small Cell Adjustment (SCA)*.
+
 For second row with `count`$=2$, `masked_count` is 3 with probability $\frac{2}{3}$ and 0 with probability $\frac{1}{3}$. 
 For third and fourth rows with `count`$=1$ `masked_count` is 3 with probability $\frac{1}{3}$ and 0 with probability $\frac{2}{3}$. 
 
@@ -87,9 +86,7 @@ For third and fourth rows with `count`$=1$ `masked_count` is 3 with probability 
 
 ### Step 2. `save_agg_tb()`: Aggregated Table with iLBA
 
-Next, we aggregate the table to the higher `hkey1` level.  
-Here, the *iLBA* algorithm adjusts the sums so that aggregated small cells remain confidential,  
-while bounding the information loss.
+Next, we aggregate the table to the higher `hkey1` level. The *iLBA* algorithm adjusts the sums so that aggregated small cells remain confidential, while bounding the information loss.
 
 | hkey1 | key | count | masked_count | infoloss |
 | ----- | --- | ----- | ------------ | -------- |
