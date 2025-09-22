@@ -7,20 +7,23 @@ This project implements the _Information Loss Bounded Aggregation (iLBA)_ algori
 ---
 ## How to Run
 
-After cloning the repository, there are two ways to run this project:
+After cloning the repository, there are two ways to restore dependencies and run this program:
 
 ### 1. From the Terminal
 Move into the project root directory, and run:
 
 ```bash
+R -e "install.packages('renv')"
+R -e "renv::restore()"
 Rscript run_analysis.R
 ```
 
 ### 2. From RStudio
 
-1. Open the project file `Project1.Rproj` in RStudio.  
-2. In the **Files** pane, double-click `run_analysis.R` to open it.  
-3. Run the script.
+1. Open the project file `Project1.Rproj` in RStudio.
+2. Install `renv` by `install.packages('renv')`
+3. Restore dependencies by `renv::restore()`
+4. Run `run_analysis.R`
 
 ---
 ## About the _iLBA_ Algorithm
@@ -75,6 +78,7 @@ Suppose we have the following **microdata** with two hierarchical keys (`hkey1`,
 The function builds a full frequency table at the most detailed level. Small cell counts (below `mask_threshold = 3`) are masked using *Small Cell Adjustment (SCA)*.
 
 For second row with `count`$=2$, `masked_count` is 3 with probability $\frac{2}{3}$ and 0 with probability $\frac{1}{3}$. 
+
 For third and fourth rows with `count`$=1$ `masked_count` is 3 with probability $\frac{1}{3}$ and 0 with probability $\frac{2}{3}$. 
 
 | hkey1 | hkey2 | key | count | masked_count |
